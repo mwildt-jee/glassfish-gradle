@@ -1,0 +1,32 @@
+/**
+ * Startet eine neue Glassfish-Instanz
+ */
+task startGlassfish(type: Exec){
+  /*
+   * Der Pfad zur Glassfish-Installation muss gesetzt sein.
+   */
+  workingDir "${GLASSFISH_HOME}${File.separator}bin"
+  def osName = System.properties['os.name'].toLowerCase()
+  if(osName.contains('windows')){
+    commandLine 'cmd', '/c', './startserv.bat'
+  } else { // *nix
+    commandLine "./startserv"
+  }
+
+}
+
+/**
+ * Deployment des war-files in den glassfish
+ */
+apply plugin: 'war'
+task deployWarToGlassfish(dependsOn: 'war', type:Exec) {
+    workingDir "${GLASSFISH_HOME}${File.separator}bin"
+
+    def osName = System.properties['os.name'].toLowerCase()
+    if(osName.contains('windows')){
+        commandLine 'cmd', '/c', 'asadmin.bat'
+    } else {
+        commandLine "./asadmin"
+    }
+    args "deploy", "--force=true", "${war.archivePath}"
+}

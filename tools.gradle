@@ -1,0 +1,7 @@
+task makeSourceDirs << {
+    sourceSets.all { set ->
+        set.allSource.srcDirs.each {dir ->
+          dir.mkdirs()
+        }
+    }
+}
