@@ -7,4 +7,4 @@ Schreiben Sie einen einfachen Deployment-Task, der nach dem Build des `war`-Arch
 Hinweise:
 * Das Deployment erfolgt über die Glassfish-Konsole mit dem Befehl `asadmin deploy /path/to/war/archive`
 * Das von Gradle erzeugte `war`-Archiv wird im Verzeichnis `build/libs` abgelegt.
-* Zum Testen können Sie das Projekt `jee-22-web` auf dem Ilias-Server nutzen.
+* Nutzen Sie zum Testen das Projekt web-sample-gradle unter https://github.com/mwildt-jee/web-sample-gradle
